@@ -159,7 +159,7 @@ Here our goal is to reconstruct a colored point cloud from a single image. We as
 
 1. Annotate the corners or boundaries of multiple planes on the image (e.g. walls, roof). All annotated planes must share at least one boundary 
    the point with another plane.
-2. Estimate the camera intrinsic `K` using `camera calibration from vanishing points
+2. Estimate the camera intrinsic `K` using `camera calibration from vanishing points`
 3. Compute $P^+$ using $P (= K [I | 0])$. (We assume a camera coordinate system for reconstruction)
 4. Repeat the following for every annotated plane
    1. Find the plane normal $n$ from the vanishing points of the plane. Direction of ray through a point  is given as $d_i = K^{-1} v_i$. The plane 
