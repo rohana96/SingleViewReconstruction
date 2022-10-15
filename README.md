@@ -10,20 +10,20 @@ Our goal is to compute `P` from 2D-3D point correspondences.
 We use a picture of stanford bunny `data/pose_estimation/bunny.jpeg` and 2D-3D point correspondences in `data/pose_estimation/bunny.txt`. The text 
 file contains multiple rows. Each row represents a pair of 2D-3D correspondences, where the first 2 numbers are the 2D coordinates on the image while the next 3 numbers are the corresponding 3D coordinates.
 
-### Visualizing annotations
+#### Visualizing annotations
 
   | Input Image                                             | Annotated 2D points                                         |
 |---------------------------------------------------------|-------------------------------------------------------------|
   | <img src="data/pose_estimation/bunny.jpeg" width="300"> | <img src="data/pose_estimation/bunny_anno.jpg" width="300"> | 
 
 
-### Camera matrix `P`
+#### Camera matrix `P`
 
     P = [[ 6.12468612e-01 -2.80769806e-01  1.09185025e-01  2.12092927e-01],[-8.90197009e-02 -6.43243106e-01  1.93261536e-01  1.73520830e-01],[ 5.
 51654830e-05 -1.35588807e-04 -7.00171505e-05  9.52266452e-05]]
 
 
-### Visualizing projected points and bounding box
+#### Visualizing projected points and bounding box
 
   | Surface Points                      | Bounding Box                          |
 |-------------------------------------|---------------------------------------| 
@@ -33,12 +33,12 @@ file contains multiple rows. Each row represents a pair of 2D-3D correspondences
 Now we capture an image of a cuboid and come up with our own 3D coordinate system (by measuring relative dimensions of the cuboid) and annotate 6 
 pairs of point correspondences. We then compute the camera matrix `P` using the annotated 2D-3D correspondences.
 
-### Camera Matrix `P`
+#### Camera Matrix `P`
 
     P = [[ 1.98148496e-01 -3.94709420e-01 -1.00587176e-01 -4.40300684e-01],[ 4.81158687e-02  2.88305349e-02 -4.25380885e-01 -6.45649926e-01],[-7.
 47179573e-05 -6.81219120e-05 -6.67792494e-05 -3.15268178e-04]]
 
-### Visualizing annotations and bounding box
+#### Visualizing annotations and bounding box
 
   | Input Image                                           | Annotated 2D points | Bounding Box                             |
 |-------------------------------------------------------| ----------- |----------------------------------------|
@@ -52,18 +52,18 @@ pairs of point correspondences. We then compute the camera matrix `P` using the 
 Here our goal is to compute camera instrinsic `K` from a triad of orthogonal vanishing points, assuming that the camera has zero skew, and that the 
 pixels are square. We annotate 3 pairs of parallel lines that are orthogonal to each other.
 
-### Visualization of the annotations and vanishing points
+#### Visualization of the annotations and vanishing points
   
   | Input Image                                                  | Annotated Parallel Lines                                                      | Vanishing points <br/>and principal point           |
 |--------------------------------------------------------------|-------------------------------------------------------------------------------|--------------------------------------------------------|
   | <img src="data/camera_calibration/church.png" width="300">   | <img src="data/camera_calibration/church_parallel_annotated.png" width="300"> | <img src="out/camera_calibration/church.png" width="300"> |
 
-### Computed `K` for the input image.
+#### Computed `K` for the input image.
 
     K = [[1.15417802e+03 0.00000000e+00 5.75066005e+02],[0.00000000e+00 1.15417802e+03 4.31939090e+02], [0.00000000e+00 0.00000000e+00 1.00000000e+00]]
 
 
-### Brief description of the implementation
+#### Implementation
 
 1. Annotate 3 pairs of parallel lines. All pairs should be mutually orthogonal.
 2. Find the corresponding vanishing points from the intersection of lines.
@@ -77,13 +77,13 @@ pixels are square. We annotate 3 pairs of parallel lines that are orthogonal to 
 Here our goal is to compute `K` from image of three squares. We will not make any additional assumption on `K` (except that it 
 is a projective camera).
 
-### Visualizing annotations
+#### Visualizing annotations
   
   | Input Image                                                 | Annotated Square 1                                            | Annotated Square 2                                            | Annotated Square 3                                            | 
 |-------------------------------------------------------------|---------------------------------------------------------------|---------------------------------------------------------------|---------------------------------------------------------------|
   | <img src="data/camera_calibration/squares.png" width="200"> | <img src="out/camera_calibration/whitebox_0.png" width="200"> | <img src="out/camera_calibration/whitebox_1.png" width="200"> | <img src="out/camera_calibration/whitebox_2.png" width="200"> |
     
- ### Evaluating angles between each pair of planes
+ #### Evaluating angles between each pair of planes
 
   |       | Angle between planes(degree)   |
   |--------------------------------| -----------  |
@@ -92,11 +92,11 @@ is a projective camera).
   | Plane 2 & Plane 3    | 180 - 85.26                    |
 
 
-### Computed intrinsic matrix `K`
+#### Computed intrinsic matrix `K`
 
      K = [[ 1.08151577e+03 -8.29602330e+00  5.12926979e+02],[ 0.00000000e+00  1.07685923e+03  3.92317997e+02],[ 0.00000000e+00  0.00000000e+00  1.00000000e+00]]
 
-### Brief description of the implementation
+#### Implementation
 
 1. We assume that we are dealing with objects of a known geometry here i.e. square. The image must contain atleast 3 square that lie on 
    mutually non-parallel planes. 
@@ -110,14 +110,14 @@ is a projective camera).
 We computed `K` from image of three squares. Now we will modify the approach by relaxing the assumption of imaging squares, and instead 
 computing `K` from image of three rectangles, each with known height-to-width ratios.
 
-### Visualizing annotations
+#### Visualizing annotations
 
   | Input Image       | Annotated Rectangle1                                               | Annotated Rectangle2                                                                        | Annotated Rectangle3                                               |
 |---------------------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
   | <img src="data/camera_calibration/test.jpg" width="200"> | <img src="out/camera_calibration/whitebox_test_0.png" width="200"> | <img src="out/camera_calibration/whitebox_test_1.png" width="200"> | <img src="out/camera_calibration/whitebox_test_2.png" width="200"> | 
     
   
-### Evaluating angles between each pair of planes
+#### Evaluating angles between each pair of planes
 
   |       | Angle between planes(degree) |
   |------------------------------| ----------- |
@@ -126,11 +126,11 @@ computing `K` from image of three rectangles, each with known height-to-width ra
   | Plane 2 & Plane 3    | 180 - 91.35    |
 
 
-### Computed intrinsic matrix `K`
+#### Computed intrinsic matrix `K`
 
     K = [[ 6.35118876e+03  1.61704009e+02 -2.36167794e+03],[ 0.00000000e+00  2.22267528e+03 -3.60764782e+02],[ 0.00000000e+00  0.00000000e+00  1.00000000e+00]]$
 
-### Brief description of the implementation
+#### Implementation
 
 1. This follows the same process as that for a square. We must, however, compute/know ratios between the dimensions of each rectangle.
 
@@ -140,14 +140,14 @@ computing `K` from image of three rectangles, each with known height-to-width ra
 
 Here our goal is to reconstruct a colored point cloud from a single image. We assume zero skew and square pixels for our input image.
 
-### Visualizing plane annotations and reconstructions 
+#### Visualizing plane annotations and reconstructions 
 
   | Input Image                                                          | Annotations                                                                      | Reconstruction View 1 | Reconstruction View 2                        | 
 |----------------------------------------------------------------------|----------------------------------------------------------------------------------| ----------- |----------------------------------------------|
   | <img src="data/single_view_reconstruction/building.png" width="200"> | <img src="data/single_view_reconstruction/building_annotations.png" width="200"> |  <img src="figures/q3_view.png" width="200"> | <img src="figures/q3_view2.png" width="200">                                          |
 
 
-### Brief description of the implementation
+#### Implementation
 
 1. Annotate the corners or boundaries of multiple planes on the image (e.g. walls, roof). All annotated planes must share atleast one boundary 
    point with another plane.
