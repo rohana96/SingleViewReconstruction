@@ -7,7 +7,7 @@
 Our goal is to compute `P` from 2D-3D point correspondences.
 
 ### (a) Stanford Bunny
-We use a picture of stanford bunny `data/pose_estimation/bunny.jpeg` and 2D-3D point correspondences in `data/pose_estimation/bunny.txt`. The text 
+We use a picture of Stanford bunny `data/pose_estimation/bunny.jpeg` and 2D-3D point correspondences in `data/pose_estimation/bunny.txt`. The text 
 file contains multiple rows. Each row represents a pair of 2D-3D correspondences, where the first 2 numbers are the 2D coordinates on the image while the next 3 numbers are the corresponding 3D coordinates.
 
 #### Visualizing annotations
@@ -29,7 +29,7 @@ file contains multiple rows. Each row represents a pair of 2D-3D correspondences
   | ![](out/pose_estimation/bunny.jpeg) | ![](out/pose_estimation/bunny_bd.jpg) | 
 
 ### (b) Cuboid
-Now we capture an image of a cuboid and come up with our own 3D coordinate system (by measuring relative dimensions of the cuboid) and annotate 6 
+Now we capture an image of a cuboid and come up with our 3D coordinate system (by measuring the relative dimensions of the cuboid) and annotate 6 
 pairs of point correspondences. We then compute the camera matrix `P` using the annotated 2D-3D correspondences.
 
 #### Camera Matrix `P`
@@ -47,7 +47,7 @@ pairs of point correspondences. We then compute the camera matrix `P` using the 
 ------
 
 ### (a) Camera calibration from vanishing points
-Here our goal is to compute camera instrinsic `K` from a triad of orthogonal vanishing points, assuming that the camera has zero skew, and that the 
+Here our goal is to compute the camera intrinsic `K` from a triad of orthogonal vanishing points, assuming that the camera has zero skew and that the 
 pixels are square. We annotate 3 pairs of parallel lines that are orthogonal to each other.
 
 #### Visualization of the annotations and vanishing points
@@ -65,14 +65,14 @@ pixels are square. We annotate 3 pairs of parallel lines that are orthogonal to 
 
 1. Annotate 3 pairs of parallel lines. All pairs should be mutually orthogonal.
 2. Find the corresponding vanishing points from the intersection of lines.
-3. Each pair of vanishing points $(v1, v2)$,  yields a contraint $v_1^T \omega v_2 = 0$. We can now construct a system of linear equations of the 
+3. Each pair of vanishing points $(v1, v2)$,  yields a constraint $v_1^T \omega v_2 = 0$. We can now construct a system of linear equations  
    for $Ax = 0$ and solve for $\omega$ using SVD. Note that we only need 3 constraints because we assume zero skew and square pixels.
 4. We use Cholesky decomposition to find $K$ which is related to $\omega$ by $\omega = K^{-T} K^{-1} $. 
 
 
 ### (b) Camera calibration from metric planes
 
-Here our goal is to compute `K` from image of three squares. We will not make any additional assumption on `K` (except that it 
+Here our goal is to compute `K` from the image of three squares. We will not make any additional assumption on `K` (except that it 
 is a projective camera).
 
 #### Visualizing annotations
@@ -96,17 +96,17 @@ is a projective camera).
 
 #### Implementation
 
-1. We assume that we are dealing with objects of a known geometry here i.e. square. The image must contain atleast 3 square that lie on 
+1. We assume that we are dealing with objects of a known geometry here i.e. square. The image must contain at least 3 square that lies on 
    mutually non-parallel planes. 
 2. We plot the squares in a metrically rectified coordinate system and compute a homography between each metric square and its projection in the 
    image.
 4. Each of the 3 homographies give us 2 constraints: $h_1^T \omega h_2$ = 0 and $h_1^T \omega h_1$ = $h_2^T \omega h_2$ where $h_1$ and 
-   $h_2$ are the first two columns fof the homography. We can now set up a system of linear equations and solve for $\omega$ using SVD.
+   $h_2$ are the first two columns of the homography. We can now set up a system of linear equations and solve for $\omega$ using SVD.
 5. We then use Cholesky decomposition to find $K$ which is related to $\omega$ by $\omega = K^{-T} K^{-1}$. 
 
 ## Camera calibration from rectangles with known sizes 
-We computed `K` from image of three squares. Now we will modify the approach by relaxing the assumption of imaging squares, and instead 
-computing `K` from image of three rectangles, each with known height-to-width ratios.
+We computed `K` from the image of three squares. Now we will modify the approach by relaxing the assumption of imaging squares, and instead 
+computing `K` from the image of three rectangles, each with known height-to-width ratios.
 
 #### Visualizing annotations
 
@@ -130,7 +130,7 @@ computing `K` from image of three rectangles, each with known height-to-width ra
 
 #### Implementation
 
-1. This follows the same process as that for a square. We must, however, compute/know ratios between the dimensions of each rectangle.
+1. This follows the same process as that for a square. We must, however, compute/know the ratios between the dimensions of each rectangle.
 
 ## 3. Single View Reconstruction
 
@@ -147,21 +147,21 @@ Here our goal is to reconstruct a colored point cloud from a single image. We as
 
 #### Implementation
 
-1. Annotate the corners or boundaries of multiple planes on the image (e.g. walls, roof). All annotated planes must share atleast one boundary 
-   point with another plane.
-2. Estimate the camera instrinsic `K` using `camera calibration from vanishing points`
-3. Compute $P^+$ using $P (= K [I | 0])$. (We assume camera coordinate system for reconstruction)
+1. Annotate the corners or boundaries of multiple planes on the image (e.g. walls, roof). All annotated planes must share at least one boundary 
+   the point with another plane.
+2. Estimate the camera intrinsic `K` using `camera calibration from vanishing points
+3. Compute $P^+$ using $P (= K [I | 0])$. (We assume a camera coordinate system for reconstruction)
 4. Repeat the following for every annotated plane
-   1. Find the plane normal $n$ from vanishing points of the plane. Direction of ray through a point  is given as $d_i = K^{-1} v_i$. The plane 
+   1. Find the plane normal $n$ from the vanishing points of the plane. Direction of ray through a point  is given as $d_i = K^{-1} v_i$. The plane 
        normal $n$ can then defined using two rays passing through two vanishing points as $n = d_1 \times d_2$.
    2. Find a reference point at a fixed depth. 
       1. For the first plane (index 0) we arbitrarily define a reference depth for one of the boundary points $u$. This is done by finding the 
          intersection of the line passing through the origin in the direction $d = P^+ u$ with the plane $z = 10$. This gives a fixed 3D point $X_{ref}$
-      2. For the subsequent frames this point can be retrieved from a cache which stores 3D locations of boundary points. This is possible because 
-         annotated planes share atleast one boundary point with another plane.
+      2. For the subsequent frames this point can be retrieved from a cache that stores 3D locations of boundary points. This is possible because 
+         annotated planes share at least one boundary point with another plane.
    3. Find the equation of the plane in $P^3$. Since $X_{ref}$ passes through the plane, we can define it as $\pi = [n, r]$ where $r$ is the residual
       such that $n^T X_{ref} + r = 0$.
-   4. Find 3D location of all points on this plane by finding their ray direction $d_i = P^+ u_i$, plucker representation $L_i$ (using origin and 
+   4. Find the 3D location of all points on this plane by finding their ray direction $d_i = P^+ u_i$, plucker representation $L_i$ (using origin and 
       point 
       at infinity) and finally the intersection with the plane which is given as $X_i = L_i \pi$.
    5. Cache the 3D locations of the boundary points.
