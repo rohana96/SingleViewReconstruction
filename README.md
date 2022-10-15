@@ -177,9 +177,9 @@ Here our goal is to reconstruct a colored point cloud from a single image. We as
 
 #### Visualizing plane annotations and reconstructions 
 
-  | Input Image                                                          | Annotations| Reconstruction View 1 | Reconstruction View 2                        | Reconstruction View 3  | 
-|----------------------------------------------------------------------|-------------------------------------------------------------------------------| ----------- | -------- |------------------------|
-  | <img src="data/single_view_reconstruction/building.png" width="200"> | <img src="data/single_view_reconstruction/building_annotations.png" width="200"> |  <img src="figures/q3_view.png" width="200"> | <img src="figures/q3_view2.png" width="200">  |
+  | Input Image                                                          | Annotations| Reconstruction View 1                                             | Reconstruction View 2                                             | Reconstruction View 3                                             | 
+|----------------------------------------------------------------------|-------------------------------------------------------------------------------|-------------------------------------------------------------------|-------------------------------------------------------------------|-------------------------------------------------------------------|
+  | <img src="data/single_view_reconstruction/building.png" width="200"> | <img src="data/single_view_reconstruction/building_annotations.png" width="200"> | <img src="data/single_view_reconstruction/view1.png" width="200"> | <img src="data/single_view_reconstruction/view2.png" width="200"> | <img src="data/single_view_reconstruction/view3.png" width="200"> |
 
 
 #### Implementation
