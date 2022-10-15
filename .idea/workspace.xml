@@ -18,7 +18,6 @@
       <change afterPath="$PROJECT_DIR$/out/pose_estimation/bunny.jpeg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/pose_estimation/bunny_bd.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/pose_estimation/bunny_points.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/annotations.py" beforeDir="false" afterPath="$PROJECT_DIR$/annotations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/camera_calibration/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/camera_calibration/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/camera_calibration/calibrate.py" beforeDir="false" afterPath="$PROJECT_DIR$/camera_calibration/calibrate.py" afterDir="false" />
@@ -88,7 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1665515440163</updated>
       <workItem from="1665515441555" duration="66974000" />
-      <workItem from="1665855166355" duration="9477000" />
+      <workItem from="1665855166355" duration="9903000" />
     </task>
     <servers />
   </component>

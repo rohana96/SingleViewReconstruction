@@ -110,9 +110,9 @@ computing `K` from image of three rectangles, each with known height-to-width ra
 
 #### Visualizing annotations
 
-  | Input Image       | Annotated Rectangle1                                               | Annotated Rectangle2                                                                        | Annotated Rectangle3                                               |
-|---------------------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
-  | <img src="data/camera_calibration/test.jpg" width="200"> | <img src="out/camera_calibration/whitebox_test_0.png" width="200"> | <img src="out/camera_calibration/whitebox_test_1.png" width="200"> | <img src="out/camera_calibration/whitebox_test_2.png" width="200"> | 
+  | Input Image                                               | Annotated Rectangle1                                               | Annotated Rectangle2                                                                        | Annotated Rectangle3                                               |
+|-----------------------------------------------------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+  | <img src="data/camera_calibration/test2.jpg" width="200"> | <img src="out/camera_calibration/whitebox_test_0.png" width="200"> | <img src="out/camera_calibration/whitebox_test_1.png" width="200"> | <img src="out/camera_calibration/whitebox_test_2.png" width="200"> | 
     
   
 #### Evaluating angles between each pair of planes
