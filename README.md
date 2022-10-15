@@ -10,12 +10,18 @@ Our goal is to compute `P` from 2D-3D point correspondences.
 We use a picture of Stanford bunny `data/pose_estimation/bunny.jpeg` and 2D-3D point correspondences in `data/pose_estimation/bunny.txt`. The text 
 file contains multiple rows. Each row represents a pair of 2D-3D correspondences, where the first 2 numbers are the 2D coordinates on the image while the next 3 numbers are the corresponding 3D coordinates.
 
+
 #### Visualizing annotations
 
   | Input Image                                             | Annotated 2D points                                         |
 |---------------------------------------------------------|-------------------------------------------------------------|
   | <img src="data/pose_estimation/bunny.jpeg" width="300"> | <img src="data/pose_estimation/bunny_anno.jpg" width="300"> | 
 
+
+#### Run
+
+`python main.py --type pose_estimation --subject bunny --task project_points`
+`python main.py --type pose_estimation --subject bunny --task draw_bbox`
 
 #### Camera matrix `P`
 
@@ -33,6 +39,10 @@ file contains multiple rows. Each row represents a pair of 2D-3D correspondences
 ### (b) Cuboid
 Now we capture an image of a cuboid and come up with our 3D coordinate system (by measuring the relative dimensions of the cuboid) and annotate 6 
 pairs of point correspondences. We then compute the camera matrix `P` using the annotated 2D-3D correspondences.
+
+#### Run
+
+`python main.py --type pose_estimation --subject cuboid`
 
 #### Camera Matrix `P`
 
@@ -59,6 +69,11 @@ pixels are square. We annotate 3 pairs of parallel lines that are orthogonal to 
   | Input Image                                                  | Annotated Parallel Lines                                                      | Vanishing points <br/>and principal point           |
 |--------------------------------------------------------------|-------------------------------------------------------------------------------|--------------------------------------------------------|
   | <img src="data/camera_calibration/church.png" width="300">   | <img src="data/camera_calibration/church_parallel_annotated.png" width="300"> | <img src="out/camera_calibration/church.png" width="300"> |
+
+
+#### Run
+
+`python main.py --type camera_calibration --task from_van_points`
 
 #### Computed `K` for the input image.
 
@@ -87,6 +102,10 @@ is a projective camera).
 |-------------------------------------------------------------|---------------------------------------------------------------|---------------------------------------------------------------|---------------------------------------------------------------|
   | <img src="data/camera_calibration/squares.png" width="200"> | <img src="out/camera_calibration/whitebox_0.png" width="200"> | <img src="out/camera_calibration/whitebox_1.png" width="200"> | <img src="out/camera_calibration/whitebox_2.png" width="200"> |
     
+#### Run
+
+`python main.py --type camera_calibration --task from_squares`
+
  #### Evaluating angles between each pair of planes
 
   |       | Angle between planes(degree)   |
@@ -122,6 +141,10 @@ computing `K` from the image of three rectangles, each with known height-to-widt
 |-----------------------------------------------------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
   | <img src="data/camera_calibration/test2.jpg" width="200"> | <img src="out/camera_calibration/whitebox_test_0.png" width="200"> | <img src="out/camera_calibration/whitebox_test_1.png" width="200"> | <img src="out/camera_calibration/whitebox_test_2.png" width="200"> | 
     
+
+#### Run
+
+`python main.py --type camera_calibration --task test_image`
   
 #### Evaluating angles between each pair of planes
 
@@ -147,6 +170,10 @@ computing `K` from the image of three rectangles, each with known height-to-widt
 ------
 
 Here our goal is to reconstruct a colored point cloud from a single image. We assume zero skew and square pixels for our input image.
+
+#### Run
+
+`python main.py --type reconstruction`
 
 #### Visualizing plane annotations and reconstructions 
 

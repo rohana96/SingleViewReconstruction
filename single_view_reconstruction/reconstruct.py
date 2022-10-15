@@ -81,11 +81,10 @@ def reconstruct(imagepath='data/single_view_reconstruction/building.png', datapa
     print(K)
     K_inv = np.linalg.inv(K)
 
-    fig = plt.figure()
-    ax = fig.add_subplot(projection='3d')
     P = K.dot(np.eye(3, 4))
     P_plus = P.T.dot(np.linalg.inv(P.dot(P.T)))
     origin = np.array([0, 0, 0, 1.])
+
     point_cloud, colours = [], []
     corners3d = {}
     planes = []
@@ -119,6 +118,8 @@ def reconstruct(imagepath='data/single_view_reconstruction/building.png', datapa
                 if (j, i) in corners2d:
                     corners3d[(j, i)] = np.array([point_3d[0], point_3d[1], point_3d[2], 1.])
 
+    fig = plt.figure()
+    ax = fig.add_subplot(projection='3d')
     point_cloud = np.stack(point_cloud)
     xx, yy, zz = point_cloud[:, 0], point_cloud[:, 1], point_cloud[:, 2]
     ax.scatter(xx, yy, zz, c=colours)
