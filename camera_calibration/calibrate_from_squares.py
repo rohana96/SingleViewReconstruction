@@ -21,7 +21,7 @@ def calibrate_from_squares(imagepath='data/camera_calibration/squares.png', data
         H = computeH(p1, p2)
         homographies.append(H)
         whitebox_proj = compositeH(H, whitebox_copy, img2)
-        output_file = os.path.join(outpath, f"whitebox_{i}.png")
+        output_file = os.path.join(outpath, f"whitebox_{i}vanishing.png")
         cv2.imwrite(output_file, whitebox_proj)
 
         points = make_homogeneous(data[i])
