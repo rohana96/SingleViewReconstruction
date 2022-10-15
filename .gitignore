@@ -1,4 +1,4 @@
 .idea/*
 *.txt.tmp
-./**/__pycache__
+__pycache__/
 *cpython-39.pyc
