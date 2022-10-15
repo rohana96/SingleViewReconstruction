@@ -156,10 +156,10 @@ Here our goal is to reconstruct a colored point cloud from a single image. We as
        normal $n$ can then defined using two rays passing through two vanishing points as $n = d_1 \times d_2$.
    2. Find a reference point at a fixed depth. 
       1. For the first plane (index 0) we arbitrarily define a reference depth for one of the boundary points $u$. This is done by finding the 
-         intersection of the line passing through the origin in the direction $d = P^+ u$ with the plane $z = 10$. This gives a fixed 3D point $X_{ref}$
+         intersection of the line passing through the origin in the direction $d = P^+ u$ with the plane $z = 10$. This gives a fixed 3D point $ X_{ref} $
       2. For the subsequent frames this point can be retrieved from a cache which stores 3D locations of boundary points. This is possible because 
          annotated planes share atleast one boundary point with another plane.
-   3. Find the equation of the plane in $P^3$. Since $X_ref$ passes through the plane, we can define it as $\pi = [n, r]$ where $r$ is the residual
+   3. Find the equation of the plane in $P^3$. Since $X_{ref}$ passes through the plane, we can define it as $\pi = [n, r]$ where $r$ is the residual
       such that $n^T X_{ref} + r = 0$.
    4. Find 3D location of all points on this plane by finding their ray direction $d_i = P^+ u_i$, plucker representation $L_i$ (using origin and 
       point 
