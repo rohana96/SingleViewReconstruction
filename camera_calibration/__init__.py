@@ -1,2 +1,2 @@
-from .calibrate import calibrate
+from .calibrate_from_van_points import calibrate_from_van_points
 from .calibrate_from_squares import calibrate_from_squares

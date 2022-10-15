@@ -14,7 +14,7 @@ def annotate_points_manually(
 ):
     points = []
 
-    def click_event(event, x, y, flags, params):
+    def click_event(event, x, y):
         if event == cv2.EVENT_LBUTTONDOWN:
             # print(x, ' ', y)
             points.append([x, y])

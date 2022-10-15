@@ -1,10 +1,9 @@
-import os
 import numpy as np
 from pose_estimation import estimateP
 import argparse
 from utils import project
 from annotations import annotate_points, annotate_points_manually, draw_lines
-from camera_calibration import calibrate, calibrate_from_squares
+from camera_calibration import calibrate_from_van_points, calibrate_from_squares
 from single_view_reconstruction import reconstruct
 
 
@@ -37,8 +36,6 @@ def run(args):
                     new_X.append(x[3:6])
                 new_X = np.array(new_X)
                 X = new_X
-
-            # import pdb; pdb.set_trace()
 
             x = project(P, X)
             x = x.T
@@ -118,7 +115,7 @@ def run(args):
     if args.type == 'camera_calibration':
         K = np.zeros((3, 3))
         if args.task == 'from_van_points':
-            K = calibrate()
+            K = calibrate_from_van_points()
         elif args.task == 'from_squares':
             metric_polygon = np.array([
                 [0., 99.],

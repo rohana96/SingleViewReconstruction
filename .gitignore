@@ -1,0 +1,4 @@
+.idea/*
+*.txt.tmp
+*__pycache__
+*cpython-39.pyc

@@ -1,7 +1,7 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-from camera_calibration import calibrate
+from camera_calibration import calibrate_from_van_points
 import cv2
 from utils import is_point_inside_boundary, get_plucker_repr, get_plane
 from annotations import vis_annotated_planes
@@ -77,7 +77,7 @@ def reconstruct(imagepath='data/single_view_reconstruction/building.png', datapa
     points_datapath = os.path.join(outpath, 'building.npy')
     np.save(points_datapath, points)
 
-    K = calibrate(imagepath, points_datapath, outpath)
+    K = calibrate_from_van_points(imagepath, points_datapath, outpath)
     print(K)
     K_inv = np.linalg.inv(K)
 

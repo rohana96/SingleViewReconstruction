@@ -10,7 +10,8 @@ def get_principal_point(intrinsic):
     return principal_point
 
 
-def calibrate(imgpath='data/camera_calibration/church.png', datapath='data/camera_calibration/church.npy', outpath='out/camera_calibration/church.png'):
+def calibrate_from_van_points(imgpath='data/camera_calibration/church.png', datapath='data/camera_calibration/church.npy',
+               outpath='out/camera_calibration/church.png'):
     points = np.load(datapath)
     lines = []
     for i in range(len(points)):
